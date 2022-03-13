@@ -49,7 +49,7 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 
 @SpringBootApplication
 @Controller
-public class SocialApplication extends WebSecurityConfigurerAdapter {
+public class CustomSocialApplication extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public WebClient rest(ClientRegistrationRepository clients, OAuth2AuthorizedClientRepository authz) {
@@ -129,7 +129,7 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SocialApplication.class, args);
+		SpringApplication.run(CustomSocialApplication.class, args);
 	}
 
 }

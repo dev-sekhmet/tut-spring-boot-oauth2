@@ -33,6 +33,12 @@
     <script type="text/javascript">
           $.ajaxSetup({
             beforeSend : function(xhr, settings) {
+                let params = (new URL(document.location)).searchParams;
+                let token = params.get("token");
+                let provider = params.get("provider");
+                console.log("params", params)
+                console.log("token", token)
+                console.log("provider", provider)
               if (settings.type == 'POST' || settings.type == 'PUT'
                   || settings.type == 'DELETE') {
                 if (!(/^http:.*/.test(settings.url) || /^https:.*/
@@ -42,6 +48,8 @@
                       .get('XSRF-TOKEN'));
                 }
               }
+                xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+                xhr.setRequestHeader("provider", provider);
             }
           });
           $.get("/user", function(data) {

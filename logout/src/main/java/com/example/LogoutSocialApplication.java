@@ -32,11 +32,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class SocialApplication extends WebSecurityConfigurerAdapter {
+public class LogoutSocialApplication extends WebSecurityConfigurerAdapter {
 
 	@RequestMapping("/user")
 	public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-		return Collections.singletonMap("name", principal.getAttribute("name"));
+		return Collections.singletonMap("name", principal.getAttribute("login"));
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SocialApplication.class, args);
+		SpringApplication.run(LogoutSocialApplication.class, args);
 	}
 
 }
